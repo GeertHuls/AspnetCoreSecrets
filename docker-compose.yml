@@ -1,0 +1,30 @@
+version: '3.7'
+
+services:
+
+  api:
+    container_name: customer-protal
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    ports:
+      - 5000:5000
+    volumes:
+      - .\Source\WiredBrain.CustomerPortal.Web:/home/app
+    depends_on:
+      - sqlserver
+
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server
+    container_name: coffee-db
+    ports:
+      - "1433:1433"
+    volumes:
+      - coffeedata:/var/opt/mssql
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=V3ryStr0ngPa55!
+
+volumes:
+  coffeedata:
+    name: coffee-app-data
