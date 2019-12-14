@@ -12,6 +12,8 @@ services:
     volumes:
       - .\Source\WiredBrain.CustomerPortal.Web:/home/app
       - .\secrets:/root/.microsoft/usersecrets
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
     depends_on:
       - sqlserver
 

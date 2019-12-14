@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using WiredBrain.CustomerPortal.Web.Models;
@@ -68,7 +69,7 @@ namespace WiredBrain.CustomerPortal.Web.Controllers
         public IActionResult AddCredit(int loyaltyNumber)
         {
             ViewBag.Title = "Redirect To Payment Provider...";
-            ViewBag.PaymentProviderKey = "XY-InSecretsFile-1234";
+            ViewBag.PaymentProviderKey = _configuration["PaymentAPIKey"];
             
             return View();
         }
