@@ -3,7 +3,7 @@ version: '3.7'
 services:
 
   api:
-    container_name: customer-protal
+    container_name: customer-portal
     build:
       context: .
       dockerfile: docker/Dockerfile
@@ -11,6 +11,7 @@ services:
       - 5000:5000
     volumes:
       - .\Source\WiredBrain.CustomerPortal.Web:/home/app
+      - .\secrets:/root/.microsoft/usersecrets
     depends_on:
       - sqlserver
 
