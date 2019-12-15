@@ -18,6 +18,16 @@ namespace WiredBrain.CustomerPortal.Web
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
+                .ConfigureAppConfiguration((context, config) =>
+                {
+                    if (context.HostingEnvironment.IsDevelopment())
+                    {
+                        return;
+                    }
+
+                    var configuration = config.Build();
+                    config.AddAzureKeyVault($"https://{configuration["keyVaultName"]}.vault.azure.net/");
+                })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>()
